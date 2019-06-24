@@ -1,3 +1,4 @@
+require 'pry'
 class PetsController < ApplicationController
 
   get '/pets' do
@@ -6,7 +7,8 @@ class PetsController < ApplicationController
   end
 
   get '/pets/new' do 
-    erb :'/pets/new'
+  erb :'/pets/new'
+  
   end
 
   post '/pets' do 
@@ -16,6 +18,7 @@ class PetsController < ApplicationController
     end
     @pet.save
     redirect "pets/#{@pet.id}"
+    binding.pry
   end
 
   get '/pets/:id' do 
