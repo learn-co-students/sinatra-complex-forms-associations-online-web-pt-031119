@@ -2,7 +2,7 @@
   <form action='/owners/<%=@owner.id%>' method='post'>
     <input id='hidden' type='hidden' name='_method' value='patch'>
     <p><label>Name:</label></p>
-    <p><input type='text' name='owner[name]' id='owner_name' value='<%=@owner.name%>'</p>
+    <p><input type='text' name='owner[name]' id='owner_name' value='<%=@owner.name%>'></p>
     <p><label>Choose an existing pet:</label></p>
     <br>
     <%@pets.each do |pet|%>
@@ -11,6 +11,6 @@
     <br>
     <p><label>and/or, create a new pet:</label></p>
     <p><label>Name:</label></p>
-    <p><input type='text' name='pet[name]' id='pet_name'></p>
+    <p><input type='text' id='pet_name' name='pet[name]'></p>
     <p><input type='submit' value='Update Owner'></p>
   </form>
