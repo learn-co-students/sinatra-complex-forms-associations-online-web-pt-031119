@@ -10,7 +10,7 @@ describe "Pets Controller" do
 
     it " loads form to create a new pet" do
       visit '/pets/new'
-      expect(page).to have_field('pet_name')
+      expect(page).to have_field('pet[name]')
     end 
 
     it "has a form with a checkbox for existing owners" do
@@ -32,8 +32,8 @@ describe "Pets Controller" do
       @owner1 = Owner.create(:name => "Cricky")
       @owner2 = Owner.create(:name => "Chris")
       visit '/pets/new'
-      fill_in "pet_name", :with => "Michael"
-      check(@owner1.id)
+      fill_in "pet[name]", :with => "Michael"
+      choose(@owner1.id)
       click_button "Create Pet"
       @pet = Pet.last
       expect(@pet.name).to eq("Michael")
@@ -42,8 +42,8 @@ describe "Pets Controller" do
 
       it " creates a new pet and a new owner" do
       visit '/pets/new'
-      fill_in "pet_name", :with => "Pippa"
-      fill_in "owner_name", :with => "Mary Nelson"
+      fill_in "pet[name]", :with => "Pippa"
+      fill_in "owner[name]", :with => "Mary Nelson"
       click_button "Create Pet"
       @owner = Owner.last
       @pet = Pet.last
