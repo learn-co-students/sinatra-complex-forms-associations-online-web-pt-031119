@@ -37,7 +37,6 @@ class PetsController < ApplicationController
     # params[:pet]["owner_id"] = []
     # end
     ####### required so that it's possible to remove ALL previous pets from owner
-    binding.pry
   
     @pet = Pet.find(params[:id])
     @pet.update(params["pet"])
