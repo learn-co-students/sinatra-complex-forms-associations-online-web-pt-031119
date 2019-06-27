@@ -1,4 +1,4 @@
-# Sinatra and Active Record: Associations and Complex Forms
+ing # Sinatra and Active Record: Associations and Complex Forms
 
 ## Objectives
 
