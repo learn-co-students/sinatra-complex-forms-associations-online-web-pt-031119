@@ -10,11 +10,13 @@ class PetsController < ApplicationController
     erb :'/pets/new'
   end
 
-  post '/pets' do   #received data from form
-    binding.pry
-    @pet = Pet.create(params[:pet])
-    @owner = Owner.create(params[:owner])
-    redirect to "pets/#{@pet.id}"
+  post '/pets' do
+    @pet = Pet.create(params[:pet]) 
+    if !params["owner"]["name"].empty?
+    @pet.owner = Owner.create(name: params["owner"]["name"])
+    @pet.save
+    end
+    redirect "/pets/#{@pet.id}"
   end
 
   get '/pets/:id' do     #shows one specific instance of the pet class
