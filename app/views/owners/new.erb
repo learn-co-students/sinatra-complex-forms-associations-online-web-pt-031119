@@ -9,5 +9,15 @@
 
   <br>
 
+  <h3>Choose Your Pets!</h3>
+  <label>Pets:</label>
+  <br>
+
+    <%@pets.each do |pet|%>
+    <p><input type="checkbox" name="owner[pet_ids][]" value="<%=pet.id%>" id="<%=pet.id%>"><%=pet.name%></input></p>
+    <%end%>
+
+  <br>
+
   <input type="submit" value="Create Owner">
 </form>
