@@ -1,5 +1,4 @@
 class PetsController < ApplicationController
-
   get '/pets' do  ##index page to display all owners
     @pets = Pet.all
     erb :'/pets/index' 
@@ -24,8 +23,15 @@ class PetsController < ApplicationController
     erb :'/pets/show'
   end
 
-  patch '/pets/:id' do   #update action, modifies existing instance specified by :id
+  get '/pets/:id/edit' do     #edit an instance of the pet class
+    @owners = Owner.all
+    @pet = Pet.find_by_id(params[:id])
+    erb :'/pets/edit'
+  end
 
+
+  patch '/pets/:id' do   #update action, modifies existing instance specified by :id
+    raise params.inspect
     redirect to "pets/#{@pet.id}"
   end
 end
