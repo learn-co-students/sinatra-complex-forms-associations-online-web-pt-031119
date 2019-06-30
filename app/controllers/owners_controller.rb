@@ -1,3 +1,4 @@
+require 'pry'
 class OwnersController < ApplicationController
 
   get '/owners' do    #index page to display all owners

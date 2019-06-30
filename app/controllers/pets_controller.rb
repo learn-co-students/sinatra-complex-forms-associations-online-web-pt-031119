@@ -1,3 +1,4 @@
+require 'pry'
 class PetsController < ApplicationController
   get '/pets' do  ##index page to display all owners
     @pets = Pet.all
@@ -29,9 +30,19 @@ class PetsController < ApplicationController
     erb :'/pets/edit'
   end
 
-
   patch '/pets/:id' do   #update action, modifies existing instance specified by :id
-    raise params.inspect
+    ####### bug fix
+    if !params[:pet].keys.include?("owner_id")
+      params[:pet]["owner_id"] = []
+      end
+      #######
+    
+    @pet = Pet.find(params[:id])
+    @pet.update(params[:pet])
+    if !params["owner"]["name"].empty?
+      @pet.owner = Owner.create(name: params["owner"]["name"])
+      @pet.save
+    end
     redirect to "pets/#{@pet.id}"
   end
 end
