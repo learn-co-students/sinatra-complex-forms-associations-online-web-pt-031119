@@ -38,7 +38,7 @@ describe "Owners Controller" do
       expect(@owner.name).to eq("Sophie")
       expect(@owner.pets.first.name).to eq("Bessie")
     end
-
+ 
       it "'/owners/new' creates a new owner and a new pet" do
       @pet1 = Pet.create(:name => "Bessie") 
       @pet2 = Pet.create(:name => "Sadie")
