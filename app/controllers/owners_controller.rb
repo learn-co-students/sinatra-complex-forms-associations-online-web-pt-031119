@@ -6,16 +6,38 @@ class OwnersController < ApplicationController
   end
 
   get '/owners/new' do 
+    @pets = Pet.all
     erb :'/owners/new'
   end
 
   post '/owners' do 
-    
+    #binding.pry
+    @owner = Owner.create(params[:owner])
+    if !params["pet"]["name"].empty?
+        @owner.pets << Pet.create(name: params["pet"]["name"])
+    end
+    redirect "owners/#{@owner.id}"
   end
 
   get '/owners/:id/edit' do 
     @owner = Owner.find(params[:id])
+    @pets = Pet.all
     erb :'/owners/edit'
+  end
+
+  patch '/owners/:id' do
+    ####### bug fix
+    if !params[:owner].keys.include?("pet_ids")
+    params[:owner]["pet_ids"] = []
+    end
+    ####### required so that it's possible to remove ALL previous pets from owner
+  
+    @owner = Owner.find(params[:id])
+    @owner.update(params["owner"])
+    if !params["pet"]["name"].empty?
+      @owner.pets << Pet.create(name: params["pet"]["name"])
+    end
+    redirect "owners/#{@owner.id}"
   end
 
   get '/owners/:id' do 
