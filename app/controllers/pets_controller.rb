@@ -1,4 +1,3 @@
-    
 class PetsController < ApplicationController
 
   get '/pets' do
